@@ -2,6 +2,8 @@ package com.example.xjpackcompose
 
 import android.os.Bundle
 import androidx.activity.ComponentActivity
+import androidx.activity.OnBackPressedCallback
+import androidx.activity.OnBackPressedDispatcher
 import androidx.activity.compose.setContent
 import androidx.compose.foundation.*
 import androidx.compose.foundation.layout.*
@@ -33,6 +35,7 @@ import androidx.compose.ui.unit.sp
 import androidx.constraintlayout.compose.ConstraintLayout
 import androidx.constraintlayout.compose.ConstraintSet
 import androidx.constraintlayout.compose.Dimension
+import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 import kotlin.random.Random
 
@@ -96,7 +99,102 @@ class MainActivity : ComponentActivity() {
 //            ComposeALazyList()
 
             //  9. ConstraintLayout
-            ComposeAConstraintLayout()
+//            ComposeAConstraintLayout()
+
+            //  10. Side Effects & Effect Handlers
+            SideEffectDemo()
+        }
+    }
+
+    //  10. Side Effects & Effect Handlers - https://www.youtube.com/watch?v=f_iIMscTNjQ&list=PLQkwcJG4YTCSpJ2NLhDTHhi6XBNfk9WiC&index=12
+    @Composable
+    private fun SideEffectDemo() {
+//        SimpleSideEffect()
+//        CleanUpDisposableEffect()
+//        LaunchEffectDemo()
+        ProduceStateDemo()
+    }
+
+    private var i = 0
+
+    @Composable
+    private fun SimpleSideEffect() {
+        SideEffect {    //  gets called when everytime composition is successful, not executed when it fails
+            i++
+        }
+        Button(onClick = {
+            println("yup: counter is : $i")
+        }) {
+            Text(text = "click me!")
+        }
+    }
+
+    @Composable
+    private fun CleanUpDisposableEffect(backPressedDispatcher: OnBackPressedDispatcher? = null) {
+        val backPressCallback = remember {
+            object : OnBackPressedCallback(true) {
+                override fun handleOnBackPressed() {
+                    //  do something
+                }
+            }
+        }
+
+        DisposableEffect(key1 = backPressedDispatcher) {
+            backPressedDispatcher?.addCallback(backPressCallback)
+            onDispose { //  free ups memory, on every recomposition
+                backPressCallback.remove()
+            }
+        }
+    }
+
+    @Composable
+    private fun LaunchEffectDemo() {
+        val scaffoldState = rememberScaffoldState()
+        val cScope = rememberCoroutineScope()
+
+        Scaffold(scaffoldState = scaffoldState) {
+            var counter by remember {
+                mutableStateOf(0)
+            }
+
+            //  showing snackbar when counter is divisible by 5
+//            if (counter % 5 == 0 && counter > 0)
+//                cScope.launch { scaffoldState.snackbarHostState.showSnackbar("Hello $counter") }    //  this'll queue up snackbars and displayed, when button is repeatedly pressed - issue
+
+            //  to overcome above queue up issue, since prev coroutine is cancelled every time recomposed
+            if (counter % 5 == 0 && counter > 0) {
+                LaunchedEffect(key1 = scaffoldState.snackbarHostState) {
+                    scaffoldState.snackbarHostState.showSnackbar("Hello $counter")
+                }
+            }
+
+            Button(onClick = { counter++ }) {
+                Text(text = "click me : $counter")
+            }
+        }
+    }
+
+    //  something similar will be used for n/w calls, db access in another thread and update UI when result is received
+    @Composable
+    private fun ProduceStateDemo() {
+        val scaffoldState = rememberScaffoldState()
+
+        Scaffold(scaffoldState = scaffoldState) {
+            val counter = produceState(initialValue = 0) {
+                delay(3000L)    //  simulating n/w call
+                value = 24
+            }
+
+            //  to overcome above queue up issue, since prev coroutine is cancelled every time recomposed
+            if (counter.value % 5 == 0 && counter.value > 0) {
+                LaunchedEffect(key1 = scaffoldState.snackbarHostState) {
+                    scaffoldState.snackbarHostState.showSnackbar("Hello ${counter.value}")
+                }
+            }
+
+            Button(onClick = { }) {
+                Text(text = "click me : ${counter.value}")
+            }
         }
     }
 
