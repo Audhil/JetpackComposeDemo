@@ -5,6 +5,8 @@ import androidx.activity.ComponentActivity
 import androidx.activity.OnBackPressedCallback
 import androidx.activity.OnBackPressedDispatcher
 import androidx.activity.compose.setContent
+import androidx.compose.animation.animateColor
+import androidx.compose.animation.core.*
 import androidx.compose.foundation.*
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
@@ -102,7 +104,78 @@ class MainActivity : ComponentActivity() {
 //            ComposeAConstraintLayout()
 
             //  10. Side Effects & Effect Handlers
-            SideEffectDemo()
+//            SideEffectDemo()
+
+            //  11. Simple Animation
+//            SimpleAnimationDemo()
+            InfiniteAnimationDemo()
+        }
+    }
+
+    //  11. Simple Animation - https://www.youtube.com/watch?v=trVmP1rw0uw&list=PLQkwcJG4YTCSpJ2NLhDTHhi6XBNfk9WiC&index=12
+    @Composable
+    private fun SimpleAnimationDemo() {
+        var sizeState by remember {
+            mutableStateOf(200.dp)
+        }
+        val size by animateDpAsState(
+            targetValue = sizeState,
+            tween(
+                durationMillis = 3000,
+//                delayMillis = 300,
+//                easing = LinearOutSlowInEasing
+            )
+//            spring(
+//                Spring.DampingRatioHighBouncy
+//            )
+//            keyframes {
+//                durationMillis = 5000
+//                sizeState at 0 with LinearEasing
+//                sizeState * 1.5f at 1000 with FastOutLinearInEasing
+//                sizeState * 2f at 5000
+//            }
+        )
+        Box(
+            modifier = Modifier
+                .size(size)
+                .background(Color.Red),
+            contentAlignment = Alignment.Center
+        ) {
+            Button(onClick = { sizeState += 50.dp }) {
+                Text(text = "Animate!")
+            }
+        }
+    }
+
+    @Composable
+    private fun InfiniteAnimationDemo() {
+        var sizeState by remember {
+            mutableStateOf(200.dp)
+        }
+        val size by animateDpAsState(
+            targetValue = sizeState,
+            tween(
+                durationMillis = 1000
+            )
+        )
+        val infiniteTransition = rememberInfiniteTransition()
+        val color by infiniteTransition.animateColor(
+            initialValue = Color.Red,
+            targetValue = Color.Green,
+            animationSpec = infiniteRepeatable(
+                tween(durationMillis = 2000),
+                repeatMode = RepeatMode.Reverse
+            )
+        )
+        Box(
+            modifier = Modifier
+                .size(size)
+                .background(color),
+            contentAlignment = Alignment.Center
+        ) {
+            Button(onClick = { sizeState += 50.dp }) {
+                Text(text = "Animate!")
+            }
         }
     }
 
@@ -207,7 +280,6 @@ class MainActivity : ComponentActivity() {
 
 //            3
 //            val guildLine = createGuidelineFromTop(.5f)
-
 
             constrain(gBox) {
                 top.linkTo(parent.top)
