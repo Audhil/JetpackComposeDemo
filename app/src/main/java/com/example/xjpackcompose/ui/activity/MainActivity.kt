@@ -1,4 +1,4 @@
-package com.example.xjpackcompose
+package com.example.xjpackcompose.ui.activity
 
 import android.os.Bundle
 import androidx.activity.ComponentActivity
@@ -37,6 +37,7 @@ import androidx.compose.ui.unit.sp
 import androidx.constraintlayout.compose.ConstraintLayout
 import androidx.constraintlayout.compose.ConstraintSet
 import androidx.constraintlayout.compose.Dimension
+import com.example.xjpackcompose.R
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 import kotlin.random.Random
