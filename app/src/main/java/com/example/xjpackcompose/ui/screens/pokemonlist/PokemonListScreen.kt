@@ -10,7 +10,6 @@ import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.text.BasicTextField
 import androidx.compose.material.*
 import androidx.compose.runtime.*
-import androidx.compose.ui.Alignment
 import androidx.compose.ui.Alignment.Companion.Center
 import androidx.compose.ui.Alignment.Companion.CenterHorizontally
 import androidx.compose.ui.Modifier
@@ -22,6 +21,7 @@ import androidx.compose.ui.focus.onFocusChanged
 import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.toArgb
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.style.TextAlign
@@ -29,6 +29,8 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavController
+import coil.ImageLoader
+import coil.request.ImageRequest
 import com.example.xjpackcompose.R
 import com.example.xjpackcompose.data.model.PokemonListEntry
 import com.example.xjpackcompose.ui.theme.RobotoCondensed
@@ -135,6 +137,16 @@ fun PokemonEntry(
         contentAlignment = Center,
     ) {
         Column {
+            //  getting dominant color
+            val imageLoader = ImageLoader.Builder(LocalContext.current).build()
+            imageLoader.enqueue(ImageRequest.Builder(LocalContext.current)
+                .data(entry.imgUrl)
+                .target {
+                    viewModel.calcDominantColor(it) { color ->
+                        dominantColor = color
+                    }
+                }
+                .build())
             val painter = rememberCoilPainter(entry.imgUrl)
             Image(
                 painter = painter,
