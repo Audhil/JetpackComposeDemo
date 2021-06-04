@@ -3,13 +3,18 @@ package com.example.xjpackcompose.ui.activity
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
+import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.runtime.remember
+import androidx.compose.ui.Alignment
+import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.navigation.NavType
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.navArgument
 import androidx.navigation.compose.rememberNavController
+import com.example.xjpackcompose.ui.screens.animatecircle.AnimationCircularProgress
 import com.example.xjpackcompose.ui.screens.pokemondetail.PokemonDetailScreen
 import com.example.xjpackcompose.ui.screens.pokemonlist.PokemonListScreen
 import com.example.xjpackcompose.ui.theme.XJpackComposeTheme
@@ -57,6 +62,18 @@ class PokemonActivity : ComponentActivity() {
                             pokemonName = pokemonName?.toLowerCase(Locale.ROOT) ?: "",
                             navController = navController
                         )
+                    }
+
+                    composable(NavDestination.ANIMATING_CIRCLE_SCREEN) {
+                        Box(
+                            contentAlignment = Alignment.Center,
+                            modifier = Modifier.fillMaxSize()
+                        ) {
+                            AnimationCircularProgress(
+                                percentage = .9f,
+                                number = 88
+                            )
+                        }
                     }
                 }
             }

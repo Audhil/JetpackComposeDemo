@@ -34,6 +34,7 @@ import coil.request.ImageRequest
 import com.example.xjpackcompose.R
 import com.example.xjpackcompose.data.model.PokemonListEntry
 import com.example.xjpackcompose.ui.theme.RobotoCondensed
+import com.example.xjpackcompose.util.NavDestination
 import com.google.accompanist.coil.rememberCoilPainter
 import com.google.accompanist.imageloading.ImageLoadState
 
@@ -48,13 +49,21 @@ fun PokemonListScreen(
     ) {
         Column {
             Spacer(modifier = Modifier.size(20.dp))
-            Image(
-                painter = painterResource(id = R.drawable.ic_international_pok_mon_logo),
-                contentDescription = "Pokemon",
+            Box(
                 modifier = Modifier
                     .fillMaxWidth()
                     .align(CenterHorizontally)
-            )
+                    .clickable {
+                        navController.navigate(NavDestination.ANIMATING_CIRCLE_SCREEN)
+                    }
+            ) {
+                Image(
+                    painter = painterResource(id = R.drawable.ic_international_pok_mon_logo),
+                    contentDescription = "Pokemon",
+                    modifier = Modifier
+                        .fillMaxWidth()
+                )
+            }
             SearchBar(
                 hint = "Search...",
                 modifier = Modifier
