@@ -15,6 +15,7 @@ import androidx.navigation.compose.composable
 import androidx.navigation.compose.navArgument
 import androidx.navigation.compose.rememberNavController
 import com.example.xjpackcompose.ui.screens.animatecircle.AnimationCircularProgress
+import com.example.xjpackcompose.ui.screens.musicknob.MusicScreen
 import com.example.xjpackcompose.ui.screens.pokemondetail.PokemonDetailScreen
 import com.example.xjpackcompose.ui.screens.pokemonlist.PokemonListScreen
 import com.example.xjpackcompose.ui.theme.XJpackComposeTheme
@@ -74,6 +75,10 @@ class PokemonActivity : ComponentActivity() {
                                 number = 88
                             )
                         }
+                    }
+
+                    composable(NavDestination.MUSIC_KNOB_SCREEN) {
+                        MusicScreen()
                     }
                 }
             }

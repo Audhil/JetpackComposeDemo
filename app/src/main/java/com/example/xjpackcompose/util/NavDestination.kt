@@ -11,4 +11,5 @@ object NavDestination {
         "pokemon_detail_screen/{${Constant.dominantColor}}/{${Constant.pokemonName}}"
 
     const val ANIMATING_CIRCLE_SCREEN = "animating_circle"
+    const val MUSIC_KNOB_SCREEN = "music_knob_screen"
 }

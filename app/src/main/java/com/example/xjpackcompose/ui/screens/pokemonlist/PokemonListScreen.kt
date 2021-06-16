@@ -54,7 +54,8 @@ fun PokemonListScreen(
                     .fillMaxWidth()
                     .align(CenterHorizontally)
                     .clickable {
-                        navController.navigate(NavDestination.ANIMATING_CIRCLE_SCREEN)
+//                        navController.navigate(NavDestination.ANIMATING_CIRCLE_SCREEN)
+                        navController.navigate(NavDestination.MUSIC_KNOB_SCREEN)
                     }
             ) {
                 Image(
@@ -106,7 +107,7 @@ fun SearchBar(
                 .background(Color.White, CircleShape)
                 .padding(horizontal = 20.dp, vertical = 12.dp)
                 .onFocusChanged {
-                    isHintDisplayed = it != FocusState.Active
+//                    isHintDisplayed = it != FocusState.Active
                 }
         )
         if (isHintDisplayed) {
