@@ -55,7 +55,7 @@ fun PokemonListScreen(
                     .align(CenterHorizontally)
                     .clickable {
 //                        navController.navigate(NavDestination.ANIMATING_CIRCLE_SCREEN)
-                        navController.navigate(NavDestination.MUSIC_KNOB_SCREEN)
+//                        navController.navigate(NavDestination.MUSIC_KNOB_SCREEN)
                     }
             ) {
                 Image(
