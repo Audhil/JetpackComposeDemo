@@ -125,7 +125,7 @@ fun TimerScreen(
             )
         ) {
             Text(
-                text = if (isTimerRunning && currentTime >= 0L)
+                text = if (isTimerRunning && currentTime > 0L)
                     "Stop"
                 else if (!isTimerRunning && currentTime >= 0L)
                     "Start"
