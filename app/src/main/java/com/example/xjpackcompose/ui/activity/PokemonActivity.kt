@@ -4,9 +4,8 @@ import android.os.Bundle
 import androidx.appcompat.app.AlertDialog
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
-import androidx.compose.foundation.layout.Box
-import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.background
+import androidx.compose.foundation.layout.*
 import androidx.compose.material.*
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Add
@@ -24,6 +23,7 @@ import androidx.navigation.compose.composable
 import androidx.navigation.compose.navArgument
 import androidx.navigation.compose.rememberNavController
 import com.example.xjpackcompose.ui.screens.animatecircle.AnimationCircularProgress
+import com.example.xjpackcompose.ui.screens.dropdown.DropDownScreen
 import com.example.xjpackcompose.ui.screens.musicknob.MusicScreen
 import com.example.xjpackcompose.ui.screens.pokemondetail.PokemonDetailScreen
 import com.example.xjpackcompose.ui.screens.pokemonlist.PokemonListScreen
@@ -139,11 +139,33 @@ class PokemonActivity : ComponentActivity() {
                     }
                 }
             }
+
+            composable(NavDestination.DROP_DOWN_SCREEN) {
+                Surface(
+                    color = Color(0xFF101010),
+                    modifier = Modifier.fillMaxSize()
+                ) {
+                    DropDownScreen(
+                        text = "Hello World!",
+                        modifier = Modifier.padding(15.dp)
+                    ) {
+                        Text(
+                            text = "This is now revealed!",
+                            modifier = Modifier
+                                .fillMaxWidth()
+                                .height(100.dp)
+                                .background(
+                                    Color.Green
+                                )
+                        )
+                    }
+                }
+            }
         }
     }
 
     private fun showDialogg(navController: NavHostController) {
-        val options = arrayOf("Animating circle", "Music knob", "Timer")
+        val options = arrayOf("Animating circle", "Music knob", "Timer", "DropDown")
         val builder = AlertDialog.Builder(this)
         builder.run {
             setTitle("Choose following...")
@@ -157,6 +179,9 @@ class PokemonActivity : ComponentActivity() {
 
                     2 ->
                         navController.navigate(NavDestination.TIMER_SCREEN)
+
+                    3 ->
+                        navController.navigate(NavDestination.DROP_DOWN_SCREEN)
                 }
             }
         }.create().show()
