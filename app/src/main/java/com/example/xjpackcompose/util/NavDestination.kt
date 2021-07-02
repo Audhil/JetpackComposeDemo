@@ -14,4 +14,5 @@ object NavDestination {
     const val MUSIC_KNOB_SCREEN = "music_knob_screen"
     const val TIMER_SCREEN = "timer_screen"
     const val DROP_DOWN_SCREEN = "drop_down_screen"
+    const val SUPPORT_ALL_SCREEN_SIZES = "support_all_screen_sizes"
 }

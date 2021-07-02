@@ -27,6 +27,10 @@ import com.example.xjpackcompose.ui.screens.dropdown.DropDownScreen
 import com.example.xjpackcompose.ui.screens.musicknob.MusicScreen
 import com.example.xjpackcompose.ui.screens.pokemondetail.PokemonDetailScreen
 import com.example.xjpackcompose.ui.screens.pokemonlist.PokemonListScreen
+import com.example.xjpackcompose.ui.screens.supportallscreensizes.Dimensions
+import com.example.xjpackcompose.ui.screens.supportallscreensizes.MediaQuery
+import com.example.xjpackcompose.ui.screens.supportallscreensizes.lessThan
+import com.example.xjpackcompose.ui.screens.supportallscreensizes.mediaQuery
 import com.example.xjpackcompose.ui.screens.timer.TimerScreen
 import com.example.xjpackcompose.ui.theme.XJpackComposeTheme
 import com.example.xjpackcompose.util.NavDestination
@@ -161,11 +165,38 @@ class PokemonActivity : ComponentActivity() {
                     }
                 }
             }
+
+            composable(NavDestination.SUPPORT_ALL_SCREEN_SIZES) {
+//                Surface(
+//                    color = Color(0xffffffff),
+//                    modifier = Modifier
+//                        .fillMaxSize()
+//                ) {
+                //  sample 1
+//                    MediaQuery(comparator = Dimensions.Width lessThan 600.dp) {
+//                        Text(text = "I'll be shown only on screen width less than 600 dp")
+//                    }
+
+                //  sample 2
+                Text(
+                    text = "I'll be shown only on screen width less than 600 dp",
+                    modifier = Modifier
+                        .background(Color.Green)
+                        .mediaQuery(
+                            Dimensions.Width lessThan 600.dp,
+                            modifier = Modifier
+                                .background(Color.Red)
+                                .size(400.dp)
+                        )
+                )
+//                }
+            }
         }
     }
 
     private fun showDialogg(navController: NavHostController) {
-        val options = arrayOf("Animating circle", "Music knob", "Timer", "DropDown")
+        val options =
+            arrayOf("Animating circle", "Music knob", "Timer", "DropDown", "Support All Screens")
         val builder = AlertDialog.Builder(this)
         builder.run {
             setTitle("Choose following...")
@@ -182,6 +213,9 @@ class PokemonActivity : ComponentActivity() {
 
                     3 ->
                         navController.navigate(NavDestination.DROP_DOWN_SCREEN)
+
+                    4 ->
+                        navController.navigate(NavDestination.SUPPORT_ALL_SCREEN_SIZES)
                 }
             }
         }.create().show()
