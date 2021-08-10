@@ -28,7 +28,6 @@ import com.example.xjpackcompose.ui.screens.musicknob.MusicScreen
 import com.example.xjpackcompose.ui.screens.pokemondetail.PokemonDetailScreen
 import com.example.xjpackcompose.ui.screens.pokemonlist.PokemonListScreen
 import com.example.xjpackcompose.ui.screens.supportallscreensizes.Dimensions
-import com.example.xjpackcompose.ui.screens.supportallscreensizes.MediaQuery
 import com.example.xjpackcompose.ui.screens.supportallscreensizes.lessThan
 import com.example.xjpackcompose.ui.screens.supportallscreensizes.mediaQuery
 import com.example.xjpackcompose.ui.screens.timer.TimerScreen
