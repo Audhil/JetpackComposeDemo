@@ -26,7 +26,6 @@ import androidx.navigation.compose.rememberNavController
 import com.example.xjpackcompose.R
 import kotlinx.coroutines.delay
 
-
 class AppLaunchActivity : ComponentActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -59,7 +58,7 @@ class AppLaunchActivity : ComponentActivity() {
         }
         LaunchedEffect(key1 = true) {
             scale.animateTo(
-                targetValue = 0.3f,
+                targetValue = 1f,
                 animationSpec = tween(
                     durationMillis = 500,
                     easing = {
