@@ -12,6 +12,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.XJpackCompose">
+
+        <activity android:name=".ui.activity.BottomNavActivity" />
         <activity
             android:name=".ui.activity.MainActivity"
             android:exported="true"

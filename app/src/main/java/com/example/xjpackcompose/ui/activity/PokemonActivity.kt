@@ -1,5 +1,6 @@
 package com.example.xjpackcompose.ui.activity
 
+import android.content.Intent
 import android.os.Bundle
 import androidx.appcompat.app.AlertDialog
 import androidx.activity.ComponentActivity
@@ -12,6 +13,7 @@ import androidx.compose.material.icons.filled.Add
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
+import androidx.compose.ui.ExperimentalComposeUiApi
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.RectangleShape
@@ -39,6 +41,7 @@ import java.util.*
 @AndroidEntryPoint
 class PokemonActivity : ComponentActivity() {
 
+    @ExperimentalComposeUiApi
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContent {
@@ -66,6 +69,7 @@ class PokemonActivity : ComponentActivity() {
         }
     }
 
+    @ExperimentalComposeUiApi
     @Composable
     private fun ScreenContent(navController: NavHostController) {
         NavHost(
@@ -195,7 +199,14 @@ class PokemonActivity : ComponentActivity() {
 
     private fun showDialogg(navController: NavHostController) {
         val options =
-            arrayOf("Animating circle", "Music knob", "Timer", "DropDown", "Support All Screens")
+            arrayOf(
+                "Animating circle",
+                "Music knob",
+                "Timer",
+                "DropDown",
+                "Support All Screens",
+                "Bottom Nav Screen"
+            )
         val builder = AlertDialog.Builder(this)
         builder.run {
             setTitle("Choose following...")
@@ -215,6 +226,9 @@ class PokemonActivity : ComponentActivity() {
 
                     4 ->
                         navController.navigate(NavDestination.SUPPORT_ALL_SCREEN_SIZES)
+
+                    5 ->
+                        startActivity(Intent(applicationContext, BottomNavActivity::class.java))
                 }
             }
         }.create().show()

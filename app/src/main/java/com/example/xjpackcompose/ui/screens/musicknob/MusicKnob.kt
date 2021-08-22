@@ -11,6 +11,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
+import androidx.compose.ui.ExperimentalComposeUiApi
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.rotate
 import androidx.compose.ui.geometry.CornerRadius
@@ -27,6 +28,7 @@ import kotlin.math.PI
 import kotlin.math.atan2
 import kotlin.math.roundToInt
 
+@ExperimentalComposeUiApi
 @Composable
 fun MusicScreen() {
     Box(
@@ -63,6 +65,7 @@ fun MusicScreen() {
     }
 }
 
+@ExperimentalComposeUiApi
 @Composable
 fun MusicKnob(
     modifier: Modifier,
