@@ -205,7 +205,8 @@ class PokemonActivity : ComponentActivity() {
                 "Timer",
                 "DropDown",
                 "Support All Screens",
-                "Bottom Nav Screen"
+                "Bottom Nav Screen",
+                "Canvas Screen"
             )
         val builder = AlertDialog.Builder(this)
         builder.run {
@@ -229,6 +230,9 @@ class PokemonActivity : ComponentActivity() {
 
                     5 ->
                         startActivity(Intent(applicationContext, BottomNavActivity::class.java))
+
+                    6 ->
+                        startActivity(Intent(applicationContext, CanvasActivity::class.java))
                 }
             }
         }.create().show()
