@@ -18,7 +18,15 @@
             android:name=".ui.activity.MainActivity"
             android:exported="true"
             android:label="@string/app_name"
-            android:theme="@style/Theme.XJpackCompose.NoActionBar">
+            android:theme="@style/Theme.XJpackCompose.NoActionBar" />
+
+        <activity
+            android:name=".ui.activity.PokemonActivity"
+            android:exported="true"
+            android:label="@string/app_name"
+            android:theme="@style/Theme.XJpackCompose.NoActionBar" />
+
+        <activity android:name=".ui.activity.AppLaunchActivity">
             <!--            <intent-filter>-->
             <!--                <action android:name="android.intent.action.MAIN" />-->
 
@@ -27,28 +35,18 @@
         </activity>
 
         <activity
-            android:name=".ui.activity.PokemonActivity"
-            android:exported="true"
-            android:label="@string/app_name"
+            android:name=".ui.activity.CanvasActivity"
+            android:theme="@style/Theme.XJpackCompose.NoActionBar" />
+
+        <activity
+            android:name=".ui.activity.AnimationActivity"
             android:theme="@style/Theme.XJpackCompose.NoActionBar">
-            <!--            <intent-filter>-->
-            <!--                <action android:name="android.intent.action.MAIN" />-->
-
-            <!--                <category android:name="android.intent.category.LAUNCHER" />-->
-            <!--            </intent-filter>-->
-        </activity>
-
-        <activity android:name=".ui.activity.AppLaunchActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-
-        <activity
-            android:name=".ui.activity.CanvasActivity"
-            android:theme="@style/Theme.XJpackCompose.NoActionBar" />
     </application>
 
 </manifest>
