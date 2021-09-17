@@ -207,7 +207,8 @@ class PokemonActivity : ComponentActivity() {
                 "Support All Screens",
                 "Bottom Nav Screen",
                 "Canvas Screen",
-                "Animation Screen"
+                "Animation Screen",
+                "Custom View Screen(NOT JETPACK COMPOSE)"
             )
         val builder = AlertDialog.Builder(this)
         builder.run {
@@ -237,6 +238,9 @@ class PokemonActivity : ComponentActivity() {
 
                     7 ->
                         startActivity(Intent(applicationContext, AnimationActivity::class.java))
+
+                    8 ->
+                        startActivity(Intent(applicationContext, CustomViewActivity::class.java))
                 }
             }
         }.create().show()
