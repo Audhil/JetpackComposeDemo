@@ -4,6 +4,8 @@ import android.content.Context
 import android.graphics.Canvas
 import android.graphics.Paint
 import android.graphics.RectF
+import android.os.Bundle
+import android.os.Parcelable
 import android.util.AttributeSet
 import android.view.View
 import androidx.core.content.ContextCompat
@@ -138,6 +140,26 @@ class TallyCounterView : View, ITallyCounter {
             else ->
                 specSize
         }
+    }
+
+    override fun onSaveInstanceState(): Parcelable {
+        val bundle = Bundle()
+        bundle.putInt("yup", count)
+        bundle.putParcelable(
+            "superState",
+            super.onSaveInstanceState()
+        ) //  need this, else we are getting compile time error
+        return bundle
+    }
+
+    override fun onRestoreInstanceState(state: Parcelable) {
+        var parcelablee: Parcelable? = null
+        if (state is Bundle) {
+            count = state.getInt("yup")
+            parcelablee = state.getParcelable("superState")
+        }
+        super.onRestoreInstanceState(parcelablee)
+        setCount(count = count)
     }
 }
 

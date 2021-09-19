@@ -1,11 +1,13 @@
 package com.example.xjpackcompose.ui.custom_views
 
 import android.content.Context
+import android.os.Parcelable
 import android.util.AttributeSet
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
 
+//  https://www.youtube.com/watch?v=NYtB6mlu7vA
 //  sample view group
 class SimpleListItem : ViewGroup {
 
@@ -14,6 +16,17 @@ class SimpleListItem : ViewGroup {
     private var subtitleView: TextView? = null
 
     constructor(context: Context) : super(context)
+
+    //  best place to add listeners, callbacks, resources
+    override fun onAttachedToWindow() {
+        super.onAttachedToWindow()
+    }
+
+    //  gets called when view is recycling in listview when scrolling, calling remove view, activity is tear down,
+    //  best place to remove listeners, callbacks, resources, threads, scrolls etc
+    override fun onDetachedFromWindow() {
+        super.onDetachedFromWindow()
+    }
 
     constructor(context: Context, attributeSet: AttributeSet) : super(context, attributeSet)
 
@@ -89,5 +102,16 @@ class SimpleListItem : ViewGroup {
 
     override fun generateLayoutParams(p: LayoutParams): LayoutParams {
         return generateDefaultLayoutParams()
+    }
+
+    //  save & restore states
+    override fun onSaveInstanceState(): Parcelable? {
+        println("yup: onSaveInstanceState custom view")
+        return super.onSaveInstanceState()
+    }
+
+    override fun onRestoreInstanceState(state: Parcelable) {
+        super.onRestoreInstanceState(state)
+        println("yup: onRestoreInstanceState custom view")
     }
 }
