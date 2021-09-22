@@ -3,7 +3,7 @@ package com.example.xjpackcompose.util
 import androidx.compose.ui.graphics.Color
 import com.example.xjpackcompose.data.remote.responses.Stat
 import com.example.xjpackcompose.data.remote.responses.Type
-import com.example.xjpackcompose.ui.theme.*
+import com.example.xjpackcompose.presentation.ui.theme.*
 import java.util.*
 
 fun parseTypeToColor(type: Type): Color {

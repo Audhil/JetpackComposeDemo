@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<com.example.xjpackcompose.ui.custom_views.SimpleListItem xmlns:android="http://schemas.android.com/apk/res/android"
+<com.example.xjpackcompose.presentation.ui.custom_views.SimpleListItem xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
@@ -31,4 +31,4 @@
         android:textColor="?android:attr/textColorSecondary"
         tools:text="went up the hill to fetch a pail of water!" />
 
-</com.example.xjpackcompose.ui.custom_views.SimpleListItem>
+</com.example.xjpackcompose.presentation.ui.custom_views.SimpleListItem>
