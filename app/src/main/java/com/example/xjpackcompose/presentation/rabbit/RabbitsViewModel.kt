@@ -31,14 +31,13 @@ constructor(
             getRabbitUseCase(url).collect { result ->
                 when (result) {
                     is Resource.Loading ->
-                        _state.value = RabbitsUiState(isLoading = true)
+                        _state.value = state.value.copy(isLoading = true)
 
                     is Resource.Success ->
-                        _state.value = RabbitsUiState(isLoading = false, rabbit = result.data)
+                        _state.value = state.value.copy(isLoading = false, rabbit = result.data)
 
                     is Resource.Error ->
-//                        _state.value = state.value.copy(isLoading = false)
-                        _state.value = RabbitsUiState(isLoading = false)
+                        _state.value = state.value.copy(isLoading = false)
                 }
             }
         }

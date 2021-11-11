@@ -36,9 +36,11 @@ import com.example.xjpackcompose.presentation.ui.screens.supportallscreensizes.m
 import com.example.xjpackcompose.presentation.ui.screens.timer.TimerScreen
 import com.example.xjpackcompose.presentation.ui.theme.XJpackComposeTheme
 import com.example.xjpackcompose.util.NavDestination
+import com.google.accompanist.permissions.ExperimentalPermissionsApi
 import dagger.hilt.android.AndroidEntryPoint
 import java.util.*
 
+@ExperimentalPermissionsApi
 @AndroidEntryPoint
 class PokemonActivity : ComponentActivity() {
 
@@ -210,7 +212,8 @@ class PokemonActivity : ComponentActivity() {
                 "Canvas Screen",
                 "Animation Screen",
                 "Custom View Screen(NOT JETPACK COMPOSE)",
-                "Rabbits Screen(before choosing, make sure run ktor rabbits project in IDEA)"
+                "Rabbits Screen(before choosing, make sure run ktor rabbits project in IDEA)",
+                "Runtime permission Screen"
             )
         val builder = AlertDialog.Builder(this)
         builder.run {
@@ -246,6 +249,14 @@ class PokemonActivity : ComponentActivity() {
 
                     9 ->
                         startActivity(Intent(applicationContext, RabbitsActivity::class.java))
+
+                    10 ->
+                        startActivity(
+                            Intent(
+                                applicationContext,
+                                RuntimePermissionActivity::class.java
+                            )
+                        )
                 }
             }
         }.create().show()

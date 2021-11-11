@@ -6,13 +6,13 @@ plugins {
 }
 
 android {
-    compileSdk 30
+    compileSdk 31
     buildToolsVersion "30.0.3"
 
     defaultConfig {
         applicationId "com.example.xjpackcompose"
         minSdk 21
-        targetSdk 30
+        targetSdk 31
         versionCode 1
         versionName "1.0"
 
@@ -86,4 +86,7 @@ dependencies {
     // Coil
     implementation "io.coil-kt:coil:1.2.1"
     implementation "com.google.accompanist:accompanist-coil:0.10.0"
+
+    //  runtime permission
+    implementation "com.google.accompanist:accompanist-permissions:0.21.1-beta"
 }

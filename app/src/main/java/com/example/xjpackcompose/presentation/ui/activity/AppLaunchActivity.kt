@@ -24,8 +24,10 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import com.example.xjpackcompose.R
+import com.google.accompanist.permissions.ExperimentalPermissionsApi
 import kotlinx.coroutines.delay
 
+@ExperimentalPermissionsApi
 class AppLaunchActivity : ComponentActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
