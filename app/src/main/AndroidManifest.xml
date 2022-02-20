@@ -82,6 +82,17 @@
             android:name=".presentation.ui.activity.effect_handlers.EffectHandlersActivity"
             android:exported="true"
             android:theme="@style/Theme.XJpackCompose.NoActionBar">
+            <!--            <intent-filter>-->
+            <!--                <action android:name="android.intent.action.MAIN" />-->
+
+            <!--                <category android:name="android.intent.category.LAUNCHER" />-->
+            <!--            </intent-filter>-->
+        </activity>
+
+        <activity
+            android:name=".presentation.ui.activity.flow.FlowSampleActivity"
+            android:exported="true"
+            android:theme="@style/Theme.XJpackCompose.NoActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
