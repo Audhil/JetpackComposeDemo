@@ -25,6 +25,7 @@ import androidx.navigation.compose.composable
 import androidx.navigation.compose.navArgument
 import androidx.navigation.compose.rememberNavController
 import com.example.xjpackcompose.presentation.rabbit.RabbitsActivity
+import com.example.xjpackcompose.presentation.ui.activity.effect_handlers.EffectHandlersActivity
 import com.example.xjpackcompose.presentation.ui.screens.animatecircle.AnimationCircularProgress
 import com.example.xjpackcompose.presentation.ui.screens.dropdown.DropDownScreen
 import com.example.xjpackcompose.presentation.ui.screens.musicknob.MusicScreen
@@ -213,7 +214,8 @@ class PokemonActivity : ComponentActivity() {
                 "Animation Screen",
                 "Custom View Screen(NOT JETPACK COMPOSE)",
                 "Rabbits Screen(before choosing, make sure run ktor rabbits project in IDEA)",
-                "Runtime permission Screen"
+                "Runtime permission Screen",
+                "Effect Handlers - ALL"
             )
         val builder = AlertDialog.Builder(this)
         builder.run {
@@ -251,12 +253,10 @@ class PokemonActivity : ComponentActivity() {
                         startActivity(Intent(applicationContext, RabbitsActivity::class.java))
 
                     10 ->
-                        startActivity(
-                            Intent(
-                                applicationContext,
-                                RuntimePermissionActivity::class.java
-                            )
-                        )
+                        startActivity(Intent(applicationContext, RuntimePermissionActivity::class.java))
+
+                    11 ->
+                        startActivity(Intent(applicationContext, EffectHandlersActivity::class.java))
                 }
             }
         }.create().show()

@@ -33,11 +33,11 @@
         <activity
             android:name="com.example.xjpackcompose.presentation.ui.activity.AppLaunchActivity"
             android:exported="true">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
+            <!--            <intent-filter>-->
+            <!--                <action android:name="android.intent.action.MAIN" />-->
 
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
+            <!--                <category android:name="android.intent.category.LAUNCHER" />-->
+            <!--            </intent-filter>-->
         </activity>
 
         <activity
@@ -77,6 +77,17 @@
         <activity
             android:name=".presentation.ui.activity.RuntimePermissionActivity"
             android:theme="@style/Theme.XJpackCompose.NoActionBar" />
+
+        <activity
+            android:name=".presentation.ui.activity.effect_handlers.EffectHandlersActivity"
+            android:exported="true"
+            android:theme="@style/Theme.XJpackCompose.NoActionBar">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
     </application>
 
 </manifest>
