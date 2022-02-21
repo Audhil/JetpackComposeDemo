@@ -2,6 +2,8 @@ package com.example.xjpackcompose.presentation.ui.activity.flow
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.example.xjpackcompose.util.DefaultDispatchers
+import com.example.xjpackcompose.util.DispatcherProvider
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.*
@@ -11,10 +13,12 @@ import javax.inject.Inject
 @HiltViewModel
 class FlowViewModel
 @Inject
-constructor() : ViewModel() {
+constructor(
+    private val defaultDispatchers: DispatcherProvider
+) : ViewModel() {
 
     val countDownFlow = flow {
-        val startValue = 10
+        val startValue = 5
         var currentValue = startValue
         emit(startValue)
         while (currentValue > 0) {
@@ -22,7 +26,7 @@ constructor() : ViewModel() {
             currentValue--
             emit(currentValue)
         }
-    }
+    }.flowOn(defaultDispatchers.main)
 
     init {
 //        collectFlow()
@@ -41,11 +45,33 @@ constructor() : ViewModel() {
 //        restaurantSample()
 //        bufferSample()
 //        conflateSample()
-        collectLatestSample()
+//        collectLatestSample()
+
+        //  shared flow
+        //  squareNumber(8) - emitting value here is not collected. since sharedFlow is hot flow, it emits value, even when there is no collectors, and also stateFlow is also hot flow
+//        collectorsSharedFlow()
+//        squareNumber(8)
     }
 
+//    don't know, this is crashing
+//    private fun collectorsSharedFlow() {
+//        viewModelScope.launch {
+//            sharedFlow.collect {
+//                delay(2000L)
+//                println("yup: this is collector 1: value: $it")
+//            }
+//        }
+//
+//        viewModelScope.launch {
+//            sharedFlow.collect {
+//                delay(3000L)
+//                println("yup: this is collector 2: value: $it")
+//            }
+//        }
+//    }
+
     private fun collectFlow() {
-        viewModelScope.launch {
+        viewModelScope.launch(defaultDispatchers.main) {
             countDownFlow.collect {
                 println("yup: emitted value: $it")
             }
@@ -57,7 +83,7 @@ constructor() : ViewModel() {
 
     //  operators
     private fun collectFlowWithOperators() {
-        viewModelScope.launch {
+        viewModelScope.launch(defaultDispatchers.main) {
             countDownFlow
                 .filter {
                     it % 2 == 0
@@ -174,7 +200,7 @@ constructor() : ViewModel() {
             emit("ice cream")
             emit("juice")
             emit("mouth freshner")
-        }
+        }.flowOn(defaultDispatchers.main)
         /*
         2022-02-20 23:46:17.888 18673-18673/com.example.xjpackcompose I/System.out: yup: soup! is delivered
         2022-02-20 23:46:17.888 18673-18673/com.example.xjpackcompose I/System.out: yup: now eating : soup!
@@ -287,7 +313,7 @@ constructor() : ViewModel() {
         *
         * note down, we are not finishing the collectLatest block, jumping to collect the next emission at the earliest
         * */
-        viewModelScope.launch {
+        viewModelScope.launch(defaultDispatchers.main) {
             flow.onEach {
                 println("yup: $it is delivered")
             }.collectLatest {
@@ -295,6 +321,24 @@ constructor() : ViewModel() {
                 delay(1500L)
                 println("yup: finished eating: $it")
             }
+        }
+    }
+
+    //  stateFlow (holds single value, hot flow, similar to livedata without lifecycle awareness)
+    private val _stateFlow = MutableStateFlow(0)
+    val stateFlow = _stateFlow.asStateFlow()
+
+    fun incrementCounter() {
+        _stateFlow.value += 1
+    }
+
+    //  & sharedFlow (emits single value - one at a time, hot flow, doesn't retain state for orientation changes)
+    private val _sharedFlow = MutableSharedFlow<Int>()
+    val sharedFlow = _sharedFlow.asSharedFlow()
+
+    fun squareNumber(number: Int) {
+        viewModelScope.launch(defaultDispatchers.main) {
+            _sharedFlow.emit(number * number)
         }
     }
 }

@@ -5,6 +5,8 @@ import com.example.xjpackcompose.data.repository.RabbitRepositoryImpl
 import com.example.xjpackcompose.domain.repository.PokemonRepository
 import com.example.xjpackcompose.domain.repository.RabbitRepository
 import com.example.xjpackcompose.util.Constants.BASE_URL
+import com.example.xjpackcompose.util.DefaultDispatchers
+import com.example.xjpackcompose.util.DispatcherProvider
 import com.example.xjpackcompose.util.showAPIVLog
 import dagger.Module
 import dagger.Provides
@@ -62,4 +64,7 @@ object AppModule {
     @Provides
     @Singleton
     fun giveRabbitRepository(api: PokeApi): RabbitRepository = RabbitRepositoryImpl(api = api)
+
+    @Provides
+    fun giveDefaultDispatchers(): DispatcherProvider = DefaultDispatchers()
 }
