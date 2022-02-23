@@ -26,6 +26,8 @@ import androidx.navigation.compose.navArgument
 import androidx.navigation.compose.rememberNavController
 import com.example.xjpackcompose.presentation.rabbit.RabbitsActivity
 import com.example.xjpackcompose.presentation.ui.activity.effect_handlers.EffectHandlersActivity
+import com.example.xjpackcompose.presentation.ui.activity.flow.FlowSampleActivity
+import com.example.xjpackcompose.presentation.ui.activity.tablet_support.TabletScreenActivity
 import com.example.xjpackcompose.presentation.ui.screens.animatecircle.AnimationCircularProgress
 import com.example.xjpackcompose.presentation.ui.screens.dropdown.DropDownScreen
 import com.example.xjpackcompose.presentation.ui.screens.musicknob.MusicScreen
@@ -215,48 +217,51 @@ class PokemonActivity : ComponentActivity() {
                 "Custom View Screen(NOT JETPACK COMPOSE)",
                 "Rabbits Screen(before choosing, make sure run ktor rabbits project in IDEA)",
                 "Runtime permission Screen",
-                "Effect Handlers - ALL"
+                "Effect Handlers - ALL",
+                "Kotlin Flow - complete guide",
+                "Tablet screen support - Master Detail flow"
             )
         val builder = AlertDialog.Builder(this)
         builder.run {
             setTitle("Choose following...")
             setItems(options) { _, which ->
                 when (which) {
-                    0 ->
-                        navController.navigate(NavDestination.ANIMATING_CIRCLE_SCREEN)
+                    0 -> navController.navigate(NavDestination.ANIMATING_CIRCLE_SCREEN)
 
-                    1 ->
-                        navController.navigate(NavDestination.MUSIC_KNOB_SCREEN)
+                    1 -> navController.navigate(NavDestination.MUSIC_KNOB_SCREEN)
 
-                    2 ->
-                        navController.navigate(NavDestination.TIMER_SCREEN)
+                    2 -> navController.navigate(NavDestination.TIMER_SCREEN)
 
-                    3 ->
-                        navController.navigate(NavDestination.DROP_DOWN_SCREEN)
+                    3 -> navController.navigate(NavDestination.DROP_DOWN_SCREEN)
 
-                    4 ->
-                        navController.navigate(NavDestination.SUPPORT_ALL_SCREEN_SIZES)
+                    4 -> navController.navigate(NavDestination.SUPPORT_ALL_SCREEN_SIZES)
 
-                    5 ->
-                        startActivity(Intent(applicationContext, BottomNavActivity::class.java))
+                    5 -> startActivity(Intent(applicationContext, BottomNavActivity::class.java))
 
-                    6 ->
-                        startActivity(Intent(applicationContext, CanvasActivity::class.java))
+                    6 -> startActivity(Intent(applicationContext, CanvasActivity::class.java))
 
-                    7 ->
-                        startActivity(Intent(applicationContext, AnimationActivity::class.java))
+                    7 -> startActivity(Intent(applicationContext, AnimationActivity::class.java))
 
-                    8 ->
-                        startActivity(Intent(applicationContext, CustomViewActivity::class.java))
+                    8 -> startActivity(Intent(applicationContext, CustomViewActivity::class.java))
 
-                    9 ->
-                        startActivity(Intent(applicationContext, RabbitsActivity::class.java))
+                    9 -> startActivity(Intent(applicationContext, RabbitsActivity::class.java))
 
-                    10 ->
-                        startActivity(Intent(applicationContext, RuntimePermissionActivity::class.java))
+                    10 -> startActivity(
+                        Intent(
+                            applicationContext,
+                            RuntimePermissionActivity::class.java
+                        )
+                    )
 
-                    11 ->
-                        startActivity(Intent(applicationContext, EffectHandlersActivity::class.java))
+                    11 -> startActivity(
+                        Intent(
+                            applicationContext,
+                            EffectHandlersActivity::class.java
+                        )
+                    )
+
+                    12 -> startActivity(Intent(applicationContext, FlowSampleActivity::class.java))
+                    13 -> startActivity(Intent(applicationContext, TabletScreenActivity::class.java))
                 }
             }
         }.create().show()
