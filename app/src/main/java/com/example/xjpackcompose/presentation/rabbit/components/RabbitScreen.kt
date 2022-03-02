@@ -15,11 +15,9 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.hilt.navigation.compose.hiltViewModel
-import coil.annotation.ExperimentalCoilApi
 import coil.compose.rememberImagePainter
 import com.example.xjpackcompose.presentation.rabbit.RabbitsViewModel
 
-@ExperimentalCoilApi
 @Composable
 fun RabbitScreen(
     viewModel: RabbitsViewModel = hiltViewModel()

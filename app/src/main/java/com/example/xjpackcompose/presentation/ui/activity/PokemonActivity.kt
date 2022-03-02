@@ -24,6 +24,7 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.navArgument
 import androidx.navigation.compose.rememberNavController
+import com.example.xjpackcompose.presentation.map.MapsActivity
 import com.example.xjpackcompose.presentation.rabbit.RabbitsActivity
 import com.example.xjpackcompose.presentation.ui.activity.effect_handlers.EffectHandlersActivity
 import com.example.xjpackcompose.presentation.ui.activity.flow.FlowSampleActivity
@@ -47,7 +48,6 @@ import java.util.*
 @AndroidEntryPoint
 class PokemonActivity : ComponentActivity() {
 
-    @ExperimentalComposeUiApi
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContent {
@@ -74,8 +74,6 @@ class PokemonActivity : ComponentActivity() {
             }
         }
     }
-
-    @ExperimentalComposeUiApi
     @Composable
     private fun ScreenContent(navController: NavHostController) {
         NavHost(
@@ -219,7 +217,8 @@ class PokemonActivity : ComponentActivity() {
                 "Runtime permission Screen",
                 "Effect Handlers - ALL",
                 "Kotlin Flow - complete guide",
-                "Tablet screen support - Master Detail flow"
+                "Tablet screen support - Master Detail flow",
+                "Navigate to Compose Maps!"
             )
         val builder = AlertDialog.Builder(this)
         builder.run {
@@ -261,7 +260,13 @@ class PokemonActivity : ComponentActivity() {
                     )
 
                     12 -> startActivity(Intent(applicationContext, FlowSampleActivity::class.java))
-                    13 -> startActivity(Intent(applicationContext, TabletScreenActivity::class.java))
+                    13 -> startActivity(
+                        Intent(
+                            applicationContext,
+                            TabletScreenActivity::class.java
+                        )
+                    )
+                    14 -> startActivity(Intent(applicationContext, MapsActivity::class.java))
                 }
             }
         }.create().show()

@@ -15,7 +15,6 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 
-@ExperimentalAnimationApi
 @Composable
 fun MainScreen() {
     var visible by remember {
@@ -52,7 +51,7 @@ fun MainScreen() {
     }
 }
 
-@ExperimentalAnimationApi
+//@ExperimentalAnimationApi
 @Composable
 fun MainScreen2() {
     var boxState by remember {
@@ -92,7 +91,6 @@ fun MainScreen2() {
     }
 }
 
-@ExperimentalAnimationApi
 @Composable
 fun MainScreen3() {
     var boxState by remember {

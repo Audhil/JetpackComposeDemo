@@ -27,7 +27,6 @@ import com.example.xjpackcompose.R
 import com.google.accompanist.permissions.ExperimentalPermissionsApi
 import kotlinx.coroutines.delay
 
-@ExperimentalPermissionsApi
 class AppLaunchActivity : ComponentActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -39,6 +38,7 @@ class AppLaunchActivity : ComponentActivity() {
         }
     }
 
+    @OptIn(ExperimentalPermissionsApi::class)
     @Composable
     fun Navigation() {
         val navController = rememberNavController()

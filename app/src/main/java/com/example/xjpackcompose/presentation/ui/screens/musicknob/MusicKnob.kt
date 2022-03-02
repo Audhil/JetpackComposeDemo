@@ -28,7 +28,6 @@ import kotlin.math.PI
 import kotlin.math.atan2
 import kotlin.math.roundToInt
 
-@ExperimentalComposeUiApi
 @Composable
 fun MusicScreen() {
     Box(
@@ -65,7 +64,7 @@ fun MusicScreen() {
     }
 }
 
-@ExperimentalComposeUiApi
+@OptIn(ExperimentalComposeUiApi::class)
 @Composable
 fun MusicKnob(
     modifier: Modifier,

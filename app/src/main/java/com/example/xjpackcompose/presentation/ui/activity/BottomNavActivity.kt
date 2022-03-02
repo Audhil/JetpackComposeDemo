@@ -29,7 +29,6 @@ import com.example.xjpackcompose.data.model.BottomNavItem
 
 class BottomNavActivity : ComponentActivity() {
 
-    @ExperimentalMaterialApi
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContent {
@@ -64,7 +63,6 @@ class BottomNavActivity : ComponentActivity() {
     }
 }
 
-@ExperimentalMaterialApi
 @Composable
 fun BottomNavigationBar(
     items: List<BottomNavItem>,
@@ -88,13 +86,13 @@ fun BottomNavigationBar(
                 icon = {
                     Column(horizontalAlignment = CenterHorizontally) {
                         if (item.badgeCount > 0) {
-                            BadgeBox(
-                                badgeContent = {
-                                    Text(text = item.badgeCount.toString())
-                                }
-                            ) {
-                                Icon(imageVector = item.icon, contentDescription = item.name)
-                            }
+//                            BadgeBox(
+//                                badgeContent = {
+//                                    Text(text = item.badgeCount.toString())
+//                                }
+//                            ) {
+//                                Icon(imageVector = item.icon, contentDescription = item.name)
+//                            }
                         } else {
                             Icon(imageVector = item.icon, contentDescription = item.name)
                         }
