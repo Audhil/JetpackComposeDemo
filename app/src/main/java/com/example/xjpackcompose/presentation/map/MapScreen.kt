@@ -21,7 +21,7 @@ fun MapScreen(
             FloatingActionButton(onClick = { /*TODO*/ }) {
                 Icon(
                     imageVector = if (viewModel.state.isFalloutMap) Icons.Default.ThumbUp else Icons.Default.ExitToApp,
-                    contentDescription = ""
+                    contentDescription = "Toggle Fallout map"
                 )
             }
         }
