@@ -1,3 +1,5 @@
 we followed clean architecture inside map/ folder
 
 data, domain, presentation - folders
+
+add latest maps api key when relaunching app (I've deleted old API_KEY)
