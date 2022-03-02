@@ -13,7 +13,6 @@ import androidx.compose.material.icons.filled.Add
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
-import androidx.compose.ui.ExperimentalComposeUiApi
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.RectangleShape
@@ -24,7 +23,7 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.navArgument
 import androidx.navigation.compose.rememberNavController
-import com.example.xjpackcompose.presentation.map.MapsActivity
+import com.example.xjpackcompose.presentation.map.presentation.MapsActivity
 import com.example.xjpackcompose.presentation.rabbit.RabbitsActivity
 import com.example.xjpackcompose.presentation.ui.activity.effect_handlers.EffectHandlersActivity
 import com.example.xjpackcompose.presentation.ui.activity.flow.FlowSampleActivity

@@ -73,7 +73,7 @@
             android:theme="@style/Theme.XJpackCompose.NoActionBar" />
 
         <activity
-            android:name=".presentation.map.MapsActivity"
+            android:name=".presentation.map.presentation.MapsActivity"
             android:exported="false"
             android:theme="@style/Theme.XJpackCompose.NoActionBar" />
 

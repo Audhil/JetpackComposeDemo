@@ -1,4 +1,4 @@
-package com.example.xjpackcompose.presentation.map
+package com.example.xjpackcompose.presentation.map.presentation
 
 object MapStyle {
 
