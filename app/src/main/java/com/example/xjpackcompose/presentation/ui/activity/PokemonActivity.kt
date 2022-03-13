@@ -27,6 +27,7 @@ import com.example.xjpackcompose.presentation.map.presentation.MapsActivity
 import com.example.xjpackcompose.presentation.rabbit.RabbitsActivity
 import com.example.xjpackcompose.presentation.ui.activity.effect_handlers.EffectHandlersActivity
 import com.example.xjpackcompose.presentation.ui.activity.flow.FlowSampleActivity
+import com.example.xjpackcompose.presentation.ui.activity.motion_layout.MotionLayoutActivity
 import com.example.xjpackcompose.presentation.ui.activity.tablet_support.TabletScreenActivity
 import com.example.xjpackcompose.presentation.ui.screens.animatecircle.AnimationCircularProgress
 import com.example.xjpackcompose.presentation.ui.screens.dropdown.DropDownScreen
@@ -73,6 +74,7 @@ class PokemonActivity : ComponentActivity() {
             }
         }
     }
+
     @Composable
     private fun ScreenContent(navController: NavHostController) {
         NavHost(
@@ -217,7 +219,8 @@ class PokemonActivity : ComponentActivity() {
                 "Effect Handlers - ALL",
                 "Kotlin Flow - complete guide",
                 "Tablet screen support - Master Detail flow",
-                "Navigate to Compose Maps!"
+                "Navigate to Compose Maps!",
+                "Motion Layout Activity"
             )
         val builder = AlertDialog.Builder(this)
         builder.run {
@@ -266,6 +269,12 @@ class PokemonActivity : ComponentActivity() {
                         )
                     )
                     14 -> startActivity(Intent(applicationContext, MapsActivity::class.java))
+                    15 -> startActivity(
+                        Intent(
+                            applicationContext,
+                            MotionLayoutActivity::class.java
+                        )
+                    )
                 }
             }
         }.create().show()
