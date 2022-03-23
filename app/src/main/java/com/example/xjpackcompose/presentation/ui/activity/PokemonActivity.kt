@@ -24,6 +24,7 @@ import androidx.navigation.compose.composable
 import androidx.navigation.compose.navArgument
 import androidx.navigation.compose.rememberNavController
 import com.example.xjpackcompose.presentation.map.presentation.MapsActivity
+import com.example.xjpackcompose.presentation.proto_data_store_sample.ProtoDataStoreActivity
 import com.example.xjpackcompose.presentation.rabbit.RabbitsActivity
 import com.example.xjpackcompose.presentation.ui.activity.effect_handlers.EffectHandlersActivity
 import com.example.xjpackcompose.presentation.ui.activity.flow.FlowSampleActivity
@@ -220,7 +221,8 @@ class PokemonActivity : ComponentActivity() {
                 "Kotlin Flow - complete guide",
                 "Tablet screen support - Master Detail flow",
                 "Navigate to Compose Maps!",
-                "Motion Layout Activity"
+                "Motion Layout Activity",
+                "Proto DataStore Activity"
             )
         val builder = AlertDialog.Builder(this)
         builder.run {
@@ -273,6 +275,12 @@ class PokemonActivity : ComponentActivity() {
                         Intent(
                             applicationContext,
                             MotionLayoutActivity::class.java
+                        )
+                    )
+                    16 -> startActivity(
+                        Intent(
+                            applicationContext,
+                            ProtoDataStoreActivity::class.java
                         )
                     )
                 }
