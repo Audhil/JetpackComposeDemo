@@ -87,6 +87,11 @@
             android:exported="false"
             android:theme="@style/Theme.XJpackCompose.NoActionBar" />
 
+        <activity
+            android:name=".presentation.ui.activity.PagingActivity"
+            android:exported="false"
+            android:theme="@style/Theme.XJpackCompose.NoActionBar" />
+
         <meta-data
             android:name="com.google.android.geo.API_KEY"
             android:value="AIzaSyAed0No4_X1ETzA307PHXxBYFtzC4PKSXc" />

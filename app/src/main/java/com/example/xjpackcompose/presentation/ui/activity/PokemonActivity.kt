@@ -283,6 +283,12 @@ class PokemonActivity : ComponentActivity() {
                             ProtoDataStoreActivity::class.java
                         )
                     )
+                    17 -> startActivity(
+                        Intent(
+                            applicationContext,
+                            PagingActivity::class.java
+                        )
+                    )
                 }
             }
         }.create().show()

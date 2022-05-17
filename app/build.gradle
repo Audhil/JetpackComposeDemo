@@ -111,3 +111,101 @@ dependencies {
     testImplementation "com.google.truth:truth:1.1.3"
     testImplementation "org.jetbrains.kotlinx:kotlinx-coroutines-test:1.5.1"
 }
+
+//  uncomment tasks to get outputs
+//  custom gradle tasks @ https://www.youtube.com/watch?v=2SWgl-OdxDY&t=2s&ab_channel=PhilippLackner
+/*
+    o/p
+         > Configure project :app
+            Jack and jill!
+            Hi all! then! how!
+        > Task :app:helloWorld UP-TO-DATE
+        NOTE: these lines executed when the task is configured
+    */
+//task helloWorld() {
+//    println "Jack and jill!"
+//    println "Hi all! then! how!"
+//}
+
+//  life cycle call backs of task
+/*
+    o/p
+        > Configure project :app
+        Hi hello!!
+
+        > Task :app:helloWorld2
+        executed first!
+        executed last!
+    */
+//task helloWorld2 {
+//    doFirst {
+//        println "executed first!"
+//    }
+//    println "Hi hello!!"
+//    doLast {
+//        println "executed last!"
+//    }
+//}
+
+//  register task inside of a task(following code registers the task, it doesn't runs it),
+//  to run registered task use ./gradlew in terminal
+//task helloWorld3 {
+//    10.times { i ->
+//        tasks.register("task$i") {
+//            doLast {
+//                println "hello from task $i"
+//            }
+//        }
+//    }
+//}
+
+//  dependsOn - running tasks inside another task
+//task helloWorld4 {
+//    10.times { i ->
+//        tasks.register("task_$i") {
+//            doLast {
+//                println "hello from task_$i"
+//            }
+//        }
+//    }
+//    println "I'm from helloWorld 4"
+//    dependsOn "task_2"
+//    println "I'm from helloWorld 4, I'm last line"
+//}
+
+//  more about dependsOn
+//task helloWorld5 {
+//    10.times { i ->
+//        tasks.register("task__$i") {
+//            doLast {
+//                println "hello from task__$i"
+//            }
+//        }
+//    }
+//    tasks.named("task__2") {
+//        dependsOn "task__4", "task__6", "task__8"
+//    }
+//    dependsOn "task__2"
+//}
+
+//  real world tasks - customized
+//task copyApk(type: Copy) {
+task copyApk(type: Copy, dependsOn: "test") {   //  runs unit test, then this custom task
+    def sourceDir = layout.buildDirectory.dir("intermediates/apk/debug/app-debug.apk")
+    def destDir = "$rootDir/apk"
+    from sourceDir
+    into destDir
+    rename "app-debug.apk", "gradle-experiment.apk"
+    //  checksum
+    doLast {
+        def file = new File(destDir, "gradle-experiment.apk")
+        ant.checksum file: file.path
+    }
+}
+
+tasks.whenTaskAdded { task ->
+    //  "assembleDebug" is the task executed just before .apk is assembled, it is auto triggered when we "Rebuild Project"
+    if (task.name == "assembleDebug") {
+        task.finalizedBy "copyApk"  //  "copyApk" task is executed once "assembleDebug" task is ran
+    }
+}
