@@ -32,6 +32,7 @@ import com.example.xjpackcompose.presentation.ui.activity.motion_layout.MotionLa
 import com.example.xjpackcompose.presentation.ui.activity.tablet_support.TabletScreenActivity
 import com.example.xjpackcompose.presentation.ui.screens.animatecircle.AnimationCircularProgress
 import com.example.xjpackcompose.presentation.ui.screens.dropdown.DropDownScreen
+import com.example.xjpackcompose.presentation.ui.screens.formvalidation.presentation.FormValidationActivity
 import com.example.xjpackcompose.presentation.ui.screens.musicknob.MusicScreen
 import com.example.xjpackcompose.presentation.ui.screens.pokemondetail.PokemonDetailScreen
 import com.example.xjpackcompose.presentation.ui.screens.pokemonlist.PokemonListScreen
@@ -51,6 +52,7 @@ class PokemonActivity : ComponentActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        println("yup: POKO onCreate")
         setContent {
             XJpackComposeTheme {
                 val navController = rememberNavController()
@@ -78,6 +80,7 @@ class PokemonActivity : ComponentActivity() {
 
     @Composable
     private fun ScreenContent(navController: NavHostController) {
+        println("yup: POKO ScreenContent")
         NavHost(
             navController = navController,
             startDestination = NavDestination.POKEMON_LIST_SCREEN
@@ -222,7 +225,9 @@ class PokemonActivity : ComponentActivity() {
                 "Tablet screen support - Master Detail flow",
                 "Navigate to Compose Maps!",
                 "Motion Layout Activity",
-                "Proto DataStore Activity"
+                "Proto DataStore Activity",
+                "Paging Activity",
+                "Form Validation with Clean architecture"
             )
         val builder = AlertDialog.Builder(this)
         builder.run {
@@ -230,39 +235,27 @@ class PokemonActivity : ComponentActivity() {
             setItems(options) { _, which ->
                 when (which) {
                     0 -> navController.navigate(NavDestination.ANIMATING_CIRCLE_SCREEN)
-
                     1 -> navController.navigate(NavDestination.MUSIC_KNOB_SCREEN)
-
                     2 -> navController.navigate(NavDestination.TIMER_SCREEN)
-
                     3 -> navController.navigate(NavDestination.DROP_DOWN_SCREEN)
-
                     4 -> navController.navigate(NavDestination.SUPPORT_ALL_SCREEN_SIZES)
-
                     5 -> startActivity(Intent(applicationContext, BottomNavActivity::class.java))
-
                     6 -> startActivity(Intent(applicationContext, CanvasActivity::class.java))
-
                     7 -> startActivity(Intent(applicationContext, AnimationActivity::class.java))
-
                     8 -> startActivity(Intent(applicationContext, CustomViewActivity::class.java))
-
                     9 -> startActivity(Intent(applicationContext, RabbitsActivity::class.java))
-
                     10 -> startActivity(
                         Intent(
                             applicationContext,
                             RuntimePermissionActivity::class.java
                         )
                     )
-
                     11 -> startActivity(
                         Intent(
                             applicationContext,
                             EffectHandlersActivity::class.java
                         )
                     )
-
                     12 -> startActivity(Intent(applicationContext, FlowSampleActivity::class.java))
                     13 -> startActivity(
                         Intent(
@@ -287,6 +280,12 @@ class PokemonActivity : ComponentActivity() {
                         Intent(
                             applicationContext,
                             PagingActivity::class.java
+                        )
+                    )
+                    18 -> startActivity(
+                        Intent(
+                            applicationContext,
+                            FormValidationActivity::class.java
                         )
                     )
                 }
